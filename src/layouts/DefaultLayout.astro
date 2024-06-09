@@ -1,0 +1,8 @@
+---
+import Boilderplate from "./Boilderplate.astro"
+
+const { pageTitle } = Astro.props;
+---
+<Boilderplate pageTitle={pageTitle}>
+    <slot />
+</Boilderplate>
