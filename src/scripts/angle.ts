@@ -11,8 +11,7 @@ function polarToCart(centerX: number, centerY: number, radius: number, angleRad:
     };
 }
 
-export default function makeArc(x: number, y: number, radius: number, angle1: number, angle2: number): string {
-    const largeArc: boolean = angle1 < angle2;
+export default function makeArc(x: number, y: number, radius: number, angle1: number, angle2: number, largeArc: boolean): string {
     const startAngle: number = angle1 < angle2 ? angle1 : angle2;
     const endAngle: number = angle1 < angle2 ? angle2 : angle1;
 
