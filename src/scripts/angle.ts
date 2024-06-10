@@ -6,12 +6,13 @@ export function daysSince(): number {
 
 function polarToCart(centerX: number, centerY: number, radius: number, angleRad: number): { x: number, y: number } {
     return {
-        x: centerX + radius * Math.cos(angleRad),
-        y: centerY + radius * Math.sin(angleRad)
+        x: centerX + (radius * Math.cos(angleRad)),
+        y: centerY + (radius * Math.sin(angleRad))
     };
 }
 
-export default function makeArc(x: number, y: number, radius: number, angle1: number, angle2: number, largeArc: boolean): string {
+export default function makeArc(x: number, y: number, radius: number, angle1: number, angle2: number): string {
+    const largeArc: boolean = angle1 < angle2;
     const startAngle: number = angle1 < angle2 ? angle1 : angle2;
     const endAngle: number = angle1 < angle2 ? angle2 : angle1;
 
