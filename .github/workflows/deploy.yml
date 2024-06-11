@@ -10,7 +10,7 @@ on:
 
   # scheduled deploy for new angle
   schedule:
-    - cron: '30 3 * * *'
+    - cron: '0 6 * * *'
 
 # Allow this job to clone the repo and create a page deployment
 permissions:
