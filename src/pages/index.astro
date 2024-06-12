@@ -1,11 +1,11 @@
 ---
 import DefaultLayout from "@layouts/DefaultLayout.astro";
-import Angle from "@components/Angle.svelte";
-import GuessBlock from "@components/GuessBlock.svelte";
+import Angle from "@components/Angle.astro";
 ---
 
 <DefaultLayout pageTitle="Angle Clone">
-    <h1>Angle Clone</h1>
-    <Angle />
-    <GuessBlock client:load />
+    <div>
+        <h1>Angle Clone</h1>
+        <Angle />
+    </div>
 </DefaultLayout>
