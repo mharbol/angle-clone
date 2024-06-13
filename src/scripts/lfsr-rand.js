@@ -1,4 +1,8 @@
-export default class LfsrRand {
+export function fullDaysSinceEpoch() {
+    return Math.floor(new Date().getMilliseconds() / 8.64e7);
+}
+
+class LfsrRand {
     constructor(seed) {
         this.state = seed;
     }
@@ -15,3 +19,5 @@ export default class LfsrRand {
         return start + Math.abs(this.nextInt()) % (end - start);
     }
 }
+
+export default LfsrRand;
