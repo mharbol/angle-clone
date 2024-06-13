@@ -26,7 +26,7 @@ const guessButton = "Guess";
     const input = guessBlock?.querySelector("input");
     const today = new AngleRand().randInfo();
     const angle = Math.abs(
-        today.angle2 - today.angle1 + (today.deltaAngleRad > Math.PI ? 180 : 0),
+        (today.deltaAngleRad > Math.PI ? 360 : 0) - (today.angle2 - today.angle1)
     );
 
     button?.addEventListener("click", assessGuess);
