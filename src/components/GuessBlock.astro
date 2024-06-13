@@ -1,0 +1,74 @@
+---
+const placeholder = "Place guess";
+const guessButton = "Guess";
+---
+
+<div>
+    <guesses-block id="guess-block">
+        <input type="text" placeholder={placeholder} />
+        <button id="guess-button">{guessButton}</button>
+        <div></div>
+    </guesses-block>
+</div>
+
+<script>
+    import AngleRand from "@scripts/angle-rand";
+    class GuessesBlock extends HTMLElement {
+        constructor() {
+            super();
+        }
+    }
+    customElements.define("guesses-block", GuessesBlock);
+
+    const button = document.getElementById("guess-button");
+    const guessBlock = document.getElementById("guess-block");
+    const div = guessBlock?.querySelector("div");
+    const input = guessBlock?.querySelector("input");
+    const today = new AngleRand().randInfo();
+    const angle = Math.abs(
+        today.angle2 - today.angle1 + (today.deltaAngleRad > Math.PI ? 180 : 0),
+    );
+
+    button?.addEventListener("click", assessGuess);
+    input?.addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+            assessGuess();
+        }
+    });
+
+    var isBlocked = false;
+    function assessGuess() {
+        if (isBlocked) {
+            return;
+        }
+        const p = document.createElement("p");
+        p.innerHTML = guessText();
+        div?.insertBefore(p, div.firstChild);
+        if (null != input) {
+            input.value = "";
+        }
+    }
+
+    function guessText() {
+        if (input?.value == undefined) {
+            return "Undef";
+        }
+        let guess = parseInt(input?.value);
+        if (isNaN(guess)) {
+            return "Not a number";
+        }
+        if (0 > guess || guess > 360) {
+            return "Guess must be greater than 0 and less than 360";
+        }
+        if (guess > angle) {
+            return "Guess: " + guess + " too high";
+        }
+        if (guess < angle) {
+            return "Guess: " + guess + " too low";
+        }
+        isBlocked = true;
+        input.disabled = true;
+        input.placeholder = "";
+        return "Guess " + guess + " perfect!";
+    }
+</script>
