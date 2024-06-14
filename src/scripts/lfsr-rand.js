@@ -1,5 +1,5 @@
 export function fullDaysSinceEpoch() {
-    return Math.floor(new Date().getMilliseconds() / 8.64e7);
+    return Math.floor(new Date() / 8.64e7);
 }
 
 class LfsrRand {
