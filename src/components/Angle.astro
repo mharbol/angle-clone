@@ -6,10 +6,12 @@
 </angle-image>
 
 <script>
-    import makeArc, {RADIUS, HEIGHT, WIDTH, ARC_WIDTH, ARC_RAD,
+    import makeArc, {LINE_RADIUS, HEIGHT, WIDTH, ARC_WIDTH, ARC_RAD,
         LINE_WIDTH, LINE_COLOR, MINI_CIRCLE_RAD, MINI_CIRCLE_LINE,
-        MINI_CIRCLE_FILL, ARC_COLOR} from "@scripts/angle.ts";
+        MINI_CIRCLE_FILL, ARC_COLOR, BIG_CIRCLE_BG, BIG_CIRCLE_RAD}
+        from "@scripts/angle.ts";
     import AngleRand from "@scripts/angle-rand.js";
+
     class AngleImage extends HTMLElement {
         constructor() {
             super();
@@ -22,6 +24,13 @@
             svg.setAttribute("height", HEIGHT.toString());
             svg.setAttribute("width", WIDTH.toString());
 
+            const outerCir = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            outerCir.setAttribute("cx", (WIDTH / 2).toString());
+            outerCir.setAttribute("cy", (HEIGHT / 2).toString());
+            outerCir.setAttribute("r", BIG_CIRCLE_RAD.toString());
+            outerCir.setAttribute("fill", BIG_CIRCLE_BG);
+            // outerCir.setAttribute("stroke", MINI_CIRCLE_LINE);
+
             const arc = document.createElementNS("http://www.w3.org/2000/svg", "path");
             arc.setAttribute("d", makeArc(WIDTH / 2, HEIGHT / 2, ARC_RAD, today.angle1rad, today.angle2rad, today.deltaAngleRad > Math.PI));
             arc.setAttribute("fill", "none");
@@ -31,16 +40,16 @@
             const line1 = document.createElementNS("http://www.w3.org/2000/svg", "line");
             line1.setAttribute("x1", (WIDTH / 2).toString());
             line1.setAttribute("y1", (HEIGHT / 2).toString());
-            line1.setAttribute("x2", (RADIUS * Math.cos(today.angle1rad) + WIDTH / 2).toString());
-            line1.setAttribute("y2", (RADIUS * Math.sin(today.angle1rad) + HEIGHT / 2).toString());
+            line1.setAttribute("x2", (LINE_RADIUS * Math.cos(today.angle1rad) + WIDTH / 2).toString());
+            line1.setAttribute("y2", (LINE_RADIUS * Math.sin(today.angle1rad) + HEIGHT / 2).toString());
             line1.setAttribute("stroke-width", LINE_WIDTH);
             line1.setAttribute("stroke", LINE_COLOR);
 
             const line2 = document.createElementNS("http://www.w3.org/2000/svg", "line");
             line2.setAttribute("x1", (WIDTH / 2).toString());
             line2.setAttribute("y1", (HEIGHT / 2).toString());
-            line2.setAttribute("x2", (RADIUS * Math.cos(today.angle2rad) + WIDTH / 2).toString());
-            line2.setAttribute("y2", (RADIUS * Math.sin(today.angle2rad) + HEIGHT / 2).toString());
+            line2.setAttribute("x2", (LINE_RADIUS * Math.cos(today.angle2rad) + WIDTH / 2).toString());
+            line2.setAttribute("y2", (LINE_RADIUS * Math.sin(today.angle2rad) + HEIGHT / 2).toString());
             line2.setAttribute("stroke-width", LINE_WIDTH);
             line2.setAttribute("stroke", LINE_COLOR);
 
@@ -51,6 +60,7 @@
             circle.setAttribute("fill", MINI_CIRCLE_FILL);
             circle.setAttribute("stroke", MINI_CIRCLE_LINE);
 
+            svg?.appendChild(outerCir);
             svg?.appendChild(arc);
             svg?.appendChild(line1);
             svg?.appendChild(line2);

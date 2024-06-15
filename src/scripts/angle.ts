@@ -1,12 +1,14 @@
-export const RADIUS = 100;
-export const HEIGHT = 200;
+export const HEIGHT = 250;
 export const WIDTH = 300;
+export const LINE_RADIUS = 100;
+export const BIG_CIRCLE_RAD = 110;
+export const BIG_CIRCLE_BG = "#e6f0ef";
 export const ARC_RAD = 10;
 export const LINE_COLOR = "#0f5bd6";
 export const ARC_COLOR = "#ad0a0a";
 export const LINE_WIDTH = "2";
 export const ARC_WIDTH = "2";
-export const MINI_CIRCLE_FILL = "white";
+export const MINI_CIRCLE_FILL = BIG_CIRCLE_BG;
 export const MINI_CIRCLE_LINE = "black";
 export const MINI_CIRCLE_RAD = "3";
 
